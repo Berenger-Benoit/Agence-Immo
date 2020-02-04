@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Property
 {
-
     const HEAT = [
         0 => 'Electrique',
         1 => 'Gaz',
@@ -92,9 +91,10 @@ class Property
      */
     private $updated_at;
 
-    public function __construct(){
-
+    public function __construct()
+    {
         $this->created_at = new \DateTime();
+        $this->sold = false;
     }
 
     public function getId(): ?int
@@ -186,6 +186,11 @@ class Property
         return $this;
     }
 
+    public function getFormattedPrice(): string
+    {
+        return number_format($this->price, 0, '', ' ');
+    }
+
     public function getHeat(): ?int
     {
         return $this->heat;
@@ -196,6 +201,10 @@ class Property
         $this->heat = $heat;
 
         return $this;
+    }
+    public function getHeatType(): string 
+    {
+        return self::HEAT[$this->heat];
     }
 
     public function getCity(): ?string
