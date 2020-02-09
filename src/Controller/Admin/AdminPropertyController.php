@@ -6,9 +6,9 @@ use App\Entity\Property;
 use App\Form\PropertyType;
 use App\Repository\PropertyRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminPropertyController extends AbstractController
 {
@@ -34,7 +34,6 @@ class AdminPropertyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $property->setUpdatedAt(new \DateTime());
             $this->getDoctrine()->getManager()->flush();
 
@@ -50,8 +49,27 @@ class AdminPropertyController extends AbstractController
     /**
      * @Route("/new", name="admin_new")
      */
-    public function new()
+    public function new(Request $request)
     {
-        return $this->render('admin/edit.html.twig');
+        $property = new Property();
+
+        $form = $this->createForm(PropertyType::class, $property);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($property);
+
+            $em->flush();
+
+            return $this->redirectToRoute('admin_list');
+        }
+
+        return $this->render('admin/new.html.twig', [
+            'form' => $form->createView(),
+            ]);
     }
 }

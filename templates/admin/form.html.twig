@@ -1,0 +1,83 @@
+{{form_start (form)}}
+<div class="row">
+
+	<div class="col-md-5">
+
+		{{ form_label (form.title, 'Titre', {'label_attr': {'class': 'title'}}) }}
+		{{ form_widget (form.title)}}
+	</div>
+	<div class="col-md-5">
+
+		{{ form_label (form.description, 'Description', {'label_attr': {'class': 'description'}}) }}
+		{{ form_widget (form.description)}}
+	</div>
+
+	<div class="col-md-2">
+
+		{{ form_label (form.surface, 'Surface en m²', {'label_attr': {'class': 'surface'}}) }}
+		{{ form_widget (form.surface)}}
+	</div>
+</div>
+<div class="row">
+
+	<div class="col-md-2">
+
+		{{ form_label (form.rooms, 'Pièces', {'label_attr': {'class': 'rooms'}}) }}
+		{{ form_widget (form.rooms)}}
+	</div>
+
+	<div class="col-md-2">
+
+		{{ form_label (form.bedrooms, 'Nombre de chambre', {'label_attr': {'class': 'bedrooms'}}) }}
+		{{ form_widget (form.bedrooms)}}
+	</div>
+
+
+	<div class="col-md-2">
+
+		{{ form_label (form.floor, 'Etage', {'label_attr': {'class': 'floor'}}) }}
+		{{ form_widget (form.floor)}}
+	</div>
+	<div class="col-md-4">
+
+		{{ form_label (form.heat, 'Type de Chauffage', {'label_attr': {'class': 'heat'}}) }}
+		{{ form_widget (form.heat)}}
+	</div>
+</div>
+<div class="row">
+
+
+	<div class="col-md-4">
+
+		{{ form_label (form.city, 'Ville', {'label_attr': {'class': 'city'}}) }}
+		{{ form_widget (form.city)}}
+	</div>
+	<div class="col-md-6">
+
+		{{ form_label (form.address, 'Adresse', {'label_attr': {'class': 'address'}}) }}
+		{{ form_widget (form.address)}}
+	</div>
+
+	<div class="col-md-2">
+
+		{{ form_label (form.postal_code, 'Code postal', {'label_attr': {'class': 'postal_code'}}) }}
+		{{ form_widget (form.postal_code)}}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-4">
+
+		{{ form_label (form.price, 'Prix', {'label_attr': {'class': 'price'}}) }}
+		{{ form_widget (form.price)}}
+	</div>
+	<div class="col-md-2 align-self-end">
+
+		{{ form_label (form.sold, 'Vendu', {'label_attr': {'class': 'sold'}}) }}
+		{{ form_widget (form.sold)}}
+	</div>
+</div>
+
+<button class="btn btn-primary mt-4">{{ button|default('Enregistrer') }}</button>
+
+{{form_end (form)}}
+<a href="{{path('admin_list')}}" class="btn btn-primary  mt-4">Retour aux biens</a>
