@@ -95,6 +95,7 @@ class Property
     {
         $this->created_at = new \DateTime();
         $this->sold = false;
+       
     }
 
     public function getId(): ?int

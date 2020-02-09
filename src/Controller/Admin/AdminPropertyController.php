@@ -5,9 +5,10 @@ namespace App\Controller\Admin;
 use App\Entity\Property;
 use App\Form\PropertyType;
 use App\Repository\PropertyRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminPropertyController extends AbstractController
 {
@@ -24,17 +25,25 @@ class AdminPropertyController extends AbstractController
     }
 
     /**
-     * @Route("/edit/{id}", name="admin_edit", requirements={"id": "\d+"}, methods={"GET"})
+     * @Route("/edit/{id}", name="admin_edit", requirements={"id": "\d+"})
      */
-    public function edit(Property $property, Request $request)
+    public function edit(Property $property, Request $request, EntityManagerInterface $em)
     {
-       $form = $this->createForm(PropertyType::class, $property);
+        $form = $this->createForm(PropertyType::class, $property);
 
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $property->setUpdatedAt(new \DateTime());
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('admin_list');
+        }
+
         return $this->render('admin/edit.html.twig', [
         'property' => $property,
-        'form' => $form->createView()
+        'form' => $form->createView(),
         ]);
     }
 
