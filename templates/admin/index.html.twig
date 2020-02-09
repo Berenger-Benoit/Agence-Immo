@@ -16,11 +16,12 @@
             {% for property in properties %}
             <tr>
                 <td> {{ property.title }}</td>
-                <td> 
-                    <a href="{{ path('admin_edit', {'id': property.id}) }}" class="btn btn-warning">Editer</a>
-                </td>
-                <td>
-                    <a href="" class="btn btn-danger">Supprimer</a>
+                <td class="d-flex"> 
+                    <a href="{{ path('admin_edit', {'id': property.id}) }}" class="btn btn-warning mr-2">Editer <i class="fa fa-pencil" aria-hidden="true"></i></a>    
+                    <form action="{{ path('admin_delete', {'id': property.id}) }}" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                    </form>
                 </td>
             </tr>
             {% endfor %}

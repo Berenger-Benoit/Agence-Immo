@@ -25,7 +25,7 @@ class AdminPropertyController extends AbstractController
     }
 
     /**
-     * @Route("/edit/{id}", name="admin_edit", requirements={"id": "\d+"})
+     * @Route("/edit/{id}", name="admin_edit", requirements={"id": "\d+"}, methods={"GET", "POST"})
      */
     public function edit(Property $property, Request $request, EntityManagerInterface $em)
     {
@@ -36,6 +36,9 @@ class AdminPropertyController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $property->setUpdatedAt(new \DateTime());
             $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('primary', 'Le bien a été mis à jour!');
+
 
             return $this->redirectToRoute('admin_list');
         }
@@ -58,12 +61,14 @@ class AdminPropertyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($property);
 
             $em->flush();
+
+            $this->addFlash('success', 'Le bien a été ajouté!');
+
 
             return $this->redirectToRoute('admin_list');
         }
@@ -71,5 +76,19 @@ class AdminPropertyController extends AbstractController
         return $this->render('admin/new.html.twig', [
             'form' => $form->createView(),
             ]);
+    }
+
+    /**
+     * @Route("/delete/{id}", name="admin_delete", requirements={"id": "\d+"}, methods={"DELETE"})
+     */
+    public function delete(Property $property)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($property);
+        $em->flush();
+
+        $this->addFlash('danger', 'Le bien a été supprimé');
+
+        return $this->redirectToRoute('admin_list');
     }
 }
