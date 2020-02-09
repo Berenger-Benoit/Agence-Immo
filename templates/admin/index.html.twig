@@ -17,15 +17,14 @@
             <tr>
                 <td> {{ property.title }}</td>
                 <td> 
-                    <a href="{{ path('admin_edit', {'id': property.id}) }}" class="btn btn-secondary">Editer</a>
+                    <a href="{{ path('admin_edit', {'id': property.id}) }}" class="btn btn-warning">Editer</a>
+                </td>
+                <td>
+                    <a href="" class="btn btn-danger">Supprimer</a>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-
-
-
-
 </div>
 {% endblock %}

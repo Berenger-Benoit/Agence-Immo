@@ -7,16 +7,18 @@ use App\Repository\PropertyRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-
-
 class PropertyController extends AbstractController
 {
-    /*
-     * @route("/list", name="property_list")
+    /**
+     * @route("/list", name="property_list", methods={"GET"})
      */
-    public function list()
+    public function list(PropertyRepository $pr)
     {
-        return $this->render('property/list.html.twig');
+        $properties = $pr->findAll();
+
+        return $this->render('property/list.html.twig', [
+            'properties' => $properties
+        ]);
     }
 
     /**
@@ -24,9 +26,8 @@ class PropertyController extends AbstractController
      */
     public function show(Property $property)
     {
-
         return $this->render('property/single.html.twig', [
-            'property' => $property
+            'property' => $property,
         ]);
     }
 }

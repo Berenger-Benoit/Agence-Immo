@@ -3,14 +3,14 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Property;
+use App\Form\PropertyType;
 use App\Repository\PropertyRepository;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 class AdminPropertyController extends AbstractController
 {
-   
-    
     /**
      * @Route("/admin", name="admin_list")
      */
@@ -18,20 +18,31 @@ class AdminPropertyController extends AbstractController
     {
         $properties = $pr->findAll();
 
-        return $this->render('admin/index.html.twig',[
-        'properties' => $properties
+        return $this->render('admin/index.html.twig', [
+        'properties' => $properties,
         ]);
     }
 
     /**
-     * @Route("/edit/{id}", name="admin_edit")
+     * @Route("/edit/{id}", name="admin_edit", requirements={"id": "\d+"}, methods={"GET"})
      */
-    public function edit(Property $property)
+    public function edit(Property $property, Request $request)
     {
-        
+       $form = $this->createForm(PropertyType::class, $property);
 
-        return $this->render('admin/edit.html.twig',[
-        'property' => $property
+        $form->handleRequest($request);
+
+        return $this->render('admin/edit.html.twig', [
+        'property' => $property,
+        'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/new", name="admin_new")
+     */
+    public function new()
+    {
+        return $this->render('admin/edit.html.twig');
     }
 }
