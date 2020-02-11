@@ -26,8 +26,16 @@ class PropertyController extends AbstractController
      */
     public function show(Property $property)
     {
+        if($property->getSold() == false){
+            $status = 'A vendre';
+        }
+        if($property->getSold() == true){
+            $status = 'Vendu';
+        }
+       
         return $this->render('property/single.html.twig', [
             'property' => $property,
+            'status' => $status
         ]);
     }
 }
