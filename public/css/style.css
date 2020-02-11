@@ -1,0 +1,10 @@
+
+#header {
+
+    background: linear-gradient(#101219,#222736);
+    color: white;
+}
+#header .nav-link ,.navbar-brand {
+    color: white;
+}
+

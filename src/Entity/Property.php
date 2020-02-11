@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PropertyRepository")
@@ -23,6 +24,7 @@ class Property
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=10,max=255, minMessage="Le titre est trop court")
      */
     private $title;
 
@@ -33,26 +35,31 @@ class Property
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(min=10, minMessage="La surface est trop petite min 10 m²")
      */
     private $surface;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(min=0,minMessage="Cette valeur doit être positive ou égal à 0")
      */
     private $rooms;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(min=0,minMessage="Cette valeur doit être positive ou égal à 0")
      */
     private $bedrooms;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(min=0,minMessage="Cette valeur doit être positive ou égal à 0")
      */
     private $floor;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Regex("/\d/")
      */
     private $price;
 
@@ -73,6 +80,7 @@ class Property
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex("/^[0-9]{5}$/")
      */
     private $postal_code;
 
@@ -95,7 +103,6 @@ class Property
     {
         $this->created_at = new \DateTime();
         $this->sold = false;
-       
     }
 
     public function getId(): ?int
@@ -203,7 +210,8 @@ class Property
 
         return $this;
     }
-    public function getHeatType(): string 
+
+    public function getHeatType(): string
     {
         return self::HEAT[$this->heat];
     }

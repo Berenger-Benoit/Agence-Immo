@@ -3,45 +3,39 @@
 
 	<div class="col-md-5">
 
-		{{ form_label (form.title, 'Titre', {'label_attr': {'class': 'title'}}) }}
-		{{ form_widget (form.title)}}
+		{{ form_row (form.title, { 'label': 'Titre' })}}
 	</div>
 	<div class="col-md-5">
 
-		{{ form_label (form.description, 'Description', {'label_attr': {'class': 'description'}}) }}
-		{{ form_widget (form.description)}}
+		{{ form_row (form.description, { 'label': 'Description' })}}
 	</div>
 
 	<div class="col-md-2">
 
-		{{ form_label (form.surface, 'Surface en m²', {'label_attr': {'class': 'surface'}}) }}
-		{{ form_widget (form.surface)}}
+		{{ form_row (form.surface, { 'label': 'Surface en m²' })}}
 	</div>
 </div>
 <div class="row">
 
 	<div class="col-md-2">
 
-		{{ form_label (form.rooms, 'Pièces', {'label_attr': {'class': 'rooms'}}) }}
-		{{ form_widget (form.rooms)}}
+		{{ form_row (form.rooms, { 'label': 'Pièces' })}}
 	</div>
 
 	<div class="col-md-2">
 
-		{{ form_label (form.bedrooms, 'Nombre de chambre', {'label_attr': {'class': 'bedrooms'}}) }}
-		{{ form_widget (form.bedrooms)}}
+		{{ form_row (form.bedrooms, { 'label': 'Nombre de chambre' })}}
 	</div>
 
 
 	<div class="col-md-2">
 
-		{{ form_label (form.floor, 'Etage', {'label_attr': {'class': 'floor'}}) }}
-		{{ form_widget (form.floor)}}
+		{{ form_row (form.floor, { 'label': 'Etage' })}}
 	</div>
 	<div class="col-md-4">
 
-		{{ form_label (form.heat, 'Type de Chauffage', {'label_attr': {'class': 'heat'}}) }}
-		{{ form_widget (form.heat)}}
+		
+		{{ form_row (form.heat, { 'label': 'Type de Chauffage' })}}
 	</div>
 </div>
 <div class="row">
@@ -49,31 +43,27 @@
 
 	<div class="col-md-4">
 
-		{{ form_label (form.city, 'Ville', {'label_attr': {'class': 'city'}}) }}
-		{{ form_widget (form.city)}}
+		
+		{{ form_row (form.city, { 'label': 'Ville' }) }}
 	</div>
 	<div class="col-md-6">
 
-		{{ form_label (form.address, 'Adresse', {'label_attr': {'class': 'address'}}) }}
-		{{ form_widget (form.address)}}
+		{{ form_row (form.address, { 'label': 'Adresse' })}}
 	</div>
 
 	<div class="col-md-2">
 
-		{{ form_label (form.postal_code, 'Code postal', {'label_attr': {'class': 'postal_code'}}) }}
-		{{ form_widget (form.postal_code)}}
+		{{ form_row (form.postal_code, { 'label': 'Code postal' })}}
 	</div>
 </div>
 <div class="row">
 	<div class="col-md-4">
 
-		{{ form_label (form.price, 'Prix', {'label_attr': {'class': 'price'}}) }}
-		{{ form_widget (form.price)}}
+		{{ form_row (form.price, { 'label': 'Prix' })}}
 	</div>
 	<div class="col-md-2 align-self-end">
 
-		{{ form_label (form.sold, 'Vendu', {'label_attr': {'class': 'sold'}}) }}
-		{{ form_widget (form.sold)}}
+		{{ form_row (form.sold, { 'label': 'Vendu' })}}
 	</div>
 </div>
 
