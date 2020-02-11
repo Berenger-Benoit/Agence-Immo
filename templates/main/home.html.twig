@@ -2,31 +2,27 @@
 
 {% block body  %}
 
-    <div class="jumbotron text-center">
+    <div id="jumbotron-home" class="jumbotron text-center">
         <h1>Agence Immobilière</h1>
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus obcaecati voluptas magnam
-            perferendis libero deserunt quia. Qui, veniam repellendus! Quos ea non accusantium exercitationem delectus
-            quia corrupti, iure sit nemo.Sunt libero temporibus voluptate doloremque nam eveniet nulla quas maxime amet,
-            facere, optio, ullam debitis. Ea voluptatem excepturi vel? Accusantium, iusto nesciunt. Dicta incidunt eius
-            officiis natus, mollitia nam! Aperiam.
+            Site réalisé avec le framework Symfony 5 et le moteur de template twig
         </p>
     </div>
     <div id="homepage" class="container">
-        <h2 class="text-center" >Les derniers biens ajoutés</h2>
+        <h2 class="text-center" >Derniers biens</h2>
         <div class="row flex">
             {% for property in properties %}
-            <div class="col-3 ">
+            <div class="col-lg-3 col-md-12 mt-2 col-xs-12 ">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body  text-center">
                         <h5 class="card-title">
                             <a href="{{ path('property_show', {'id' : property.id }) }}">{{ property.title}}</a>
                         </h5>
-                        <p class="card-text">
+                        <p class="card-text  text-center">
                             {{property.address}}
                             ({{property.postalCode}})
                         </p>
-                        <div class="text-primary">
+                        <div class="text-primary text-center">
                             {{property.formattedPrice}} €
                         </div>
                     </div>
