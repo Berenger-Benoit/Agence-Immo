@@ -3,7 +3,7 @@
 {% block body %}
 <div id="list" class="container mt-2">
     <h2 class="text-center">Liste de tous les biens</h2>
-    <div class="row flex">
+    <div class="row">
         {% for property in properties %}
         <div class="col-lg-3 col-md-6 mt-2 col-xs-12 mt-2">
             <div class="card">
@@ -25,5 +25,8 @@
         {% endfor %}
     </div>
 
+    <div class="navigation">
+        {{ knp_pagination_render(properties) }}
+    </div>
 </div>
 {% endblock %}

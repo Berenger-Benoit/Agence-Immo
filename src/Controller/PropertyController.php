@@ -4,20 +4,25 @@ namespace App\Controller;
 
 use App\Entity\Property;
 use App\Repository\PropertyRepository;
-use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 class PropertyController extends AbstractController
 {
     /**
      * @route("/list", name="property_list", methods={"GET"})
      */
-    public function list(PropertyRepository $pr)
+    public function list(PropertyRepository $pr, PaginatorInterface $paginator, Request $request)
     {
-        $properties = $pr->findAll();
+        $properties = $paginator->paginate(
+            $pr->findAll(),
+            $request->query->getInt('page', 1),
+            12);
 
         return $this->render('property/list.html.twig', [
-            'properties' => $properties
+            'properties' => $properties,
         ]);
     }
 
@@ -26,16 +31,16 @@ class PropertyController extends AbstractController
      */
     public function show(Property $property)
     {
-        if($property->getSold() == false){
+        if (false == $property->getSold()) {
             $status = 'A vendre';
         }
-        if($property->getSold() == true){
+        if (true == $property->getSold()) {
             $status = 'Vendu';
         }
-       
+
         return $this->render('property/single.html.twig', [
             'property' => $property,
-            'status' => $status
+            'status' => $status,
         ]);
     }
 }
