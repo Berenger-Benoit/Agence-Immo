@@ -1,52 +1,54 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-<div class="jumbotron">
-    <div class="container">
-        {{form_start(form)}}
-        <div class="form-row">
-            <div class="col">
-                {{form_row(form.minSurface)}}
-            </div>
+<div class="jumbotron-list">
+     <div class="jumbotron">
+        <div class="container d-flex justify-content-center">
+            {{form_start(form)}}
+            <div class="form-row">
+                <div class="col">
+                    {{form_row(form.minSurface)}}
+                </div>
 
-            <div class="col">
-                {{form_row(form.maxPrice)}}
-            </div>
-            <div class="col">
-                <button type="submit" class="btn btn-secondary">Rechercher</button>
-            </div>
-        </div>
-        {{form_end(form)}}
-       
-
-    </div>
-</div>
-<div id="list" class="container mt-2">
-    <h2 class="text-center">Liste de tous les biens</h2>
-    <div class="row">
-        {% for property in properties %}
-        <div class="col-lg-3 col-md-6 mt-2 col-xs-12 mt-2">
-            <div class="card">
-                <div class="card-body text-center">
-                    <h5 class="card-title text-center">
-                        <a href="{{ path('property_show', {'id' : property.id }) }}">{{ property.title}}</a>
-                    </h5>
-                    <p class="card-text text-center">
-                        {{property.address}}
-                        ({{property.postalCode}})
-                    </p>
-                    <div class="text-primary text-center">
-                        {{property.formattedPrice}} €
-                    </div>
+                <div class="col">
+                    {{form_row(form.maxPrice)}}
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-secondary">Rechercher</button>
                 </div>
             </div>
-
+            {{form_end(form)}}
         </div>
-        {% endfor %}
     </div>
+</div>
+<div class="list-property">
+    <div class="container mt-2">
+        <h2 class="text-center">Liste de tous les biens</h2>
+        <div class="row">
+            {% for property in properties %}
+            <div class="col-lg-3 col-md-6 mt-2 col-xs-12 mt-2">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-center">
+                            <a href="{{ path('property_show', {'id' : property.id }) }}">{{ property.title}}</a>
+                        </h5>
+                        <p class="card-text text-center">
+                            {{property.address}}
+                            ({{property.postalCode}})
+                        </p>
+                        <div class="text-primary text-center">
+                            {{property.formattedPrice}} €
+                        </div>
+                    </div>
+                </div>
 
-     <div class="navigation">
-        {{ knp_pagination_render(properties) }}
-    </div> 
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="navigation">
+            {{ knp_pagination_render(properties) }}
+        </div> 
+    </div>
 </div>
 {% endblock %}

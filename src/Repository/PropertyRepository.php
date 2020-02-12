@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Property;
-use App\Entity\PropertySearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -24,7 +23,7 @@ class PropertyRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('p')
                     ->orderBy('p.id', 'DESC')
-                    ->setMaxResults(10)
+                    ->setMaxResults(12)
                     ->getQuery()
                     ->getResult()
                     ;

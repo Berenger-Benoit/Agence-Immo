@@ -3,9 +3,10 @@
 
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block body %}
-<div class="container mt-4">
-    <h1>Éditer le bien :</h1>
-        {{ include ("admin/form.html.twig", {form: form, button: 'Éditer'}) }}
+<div class="admin">
+    <div class="container mt-5">
+        <h1>Éditer le bien :</h1>
+            {{ include ("admin/form.html.twig", {form: form, button: 'Éditer'}) }}
+    </div>
 </div>
-
 {% endblock %} 
