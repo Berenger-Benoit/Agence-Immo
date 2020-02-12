@@ -3,22 +3,24 @@
 {% block body  %}
 
     <div id="jumbotron-home" class="jumbotron text-center">
-        <h1>Agence Immobilière</h1>
-        <p>
-            Site réalisé avec Symfony 5 et le moteur de template twig, les images proviennent du site https://unsplash.com et sont libre de droit
-        </p>
+        <div class="jumbotron-title">
+            <h1>Agence Immobilière</h1>
+            <p>
+                Site réalisé avec Symfony 5 et le moteur de template twig, les images proviennent du site https://unsplash.com et sont libre de droit
+            </p>
+        </div>
     </div>
     <div id="homepage" class="container">
         <h2 class="text-center" >Derniers biens</h2>
         <div class="row flex">
             {% for property in properties %}
-            <div class="col-lg-3 col-md-12 mt-2 col-xs-12 ">
+            <div class="col-lg-3 col-md-6 mt-2 col-xs-12 ">
                 <div class="card">
-                    <div class="card-body  text-center">
-                        <h5 class="card-title">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-center">
                             <a href="{{ path('property_show', {'id' : property.id }) }}">{{ property.title}}</a>
                         </h5>
-                        <p class="card-text  text-center">
+                        <p class="card-text text-center">
                             {{property.address}}
                             ({{property.postalCode}})
                         </p>
@@ -33,4 +35,5 @@
         </div>
 
     </div>
+
 {% endblock %}

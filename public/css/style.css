@@ -1,7 +1,27 @@
-#header {
-
+html{
+    width: 100%;
+}
+body {
+    height: 100vh;
+    width: 100%;
+    margin:auto;
+    padding:auto;
+}
+#page {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+}
+#homepage{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+#header{
     background: linear-gradient(#101219,#222736);
     color: white;
+    padding: 10px;
 }
 #header .nav-link ,.navbar-brand {
     color: white;
@@ -15,12 +35,14 @@
     position: relative;
     left: 10px;
 }
-#jumbotron-home{
-    color: white;
-    background-image: url(../img/home-bg.jpeg);
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
+
+.jumbotron-title{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: relative;
+    bottom: 30px;
 }
 
 .fa.fa-user{
@@ -33,6 +55,7 @@
     padding: 10px;
     box-shadow: 6px 10px 30px 1px rgba(38,28,38,1);
 }
+
 #register {
     margin-top: 25px;
     border-radius: 5px;
@@ -45,23 +68,14 @@
     min-height:200px;
 }
 
+#list{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
 .carousel-item>img{
 width: 300px;
 height: 400px;
 }
-footer{
-    background: linear-gradient(#101219,#222736);
-    color:white;
-}
-#footer{
-    text-align: center; 
-    display: flex;
-    justify-content: space-evenly;
-    list-style: none;
-}
-#footer>li>a{
-    color: white;
-}
-#footer a:hover{
-    color: red;
-}
+
