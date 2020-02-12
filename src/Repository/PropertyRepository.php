@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Property;
+use App\Entity\PropertySearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -28,7 +29,6 @@ class PropertyRepository extends ServiceEntityRepository
                     ->getResult()
                     ;
     }
-
 
     // /**
     //  * @return Property[] Returns an array of Property objects
