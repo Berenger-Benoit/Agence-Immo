@@ -25,7 +25,8 @@
                             <td class="d-flex justify-content-end"> 
                                 <a href="{{ path('admin_edit', {'id': property.id}) }}" class="btn btn-warning d-flex mr-2">Editer<i class="fa fa-pencil ml-2 mt-1" aria-hidden="true"></i></a>    
                                 <form action="{{ path('admin_delete', {'id': property.id}) }}" method="POST">
-                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_method" value="DELETE" >
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ property.id)}}">
                                     <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                 </form>
                             </td>

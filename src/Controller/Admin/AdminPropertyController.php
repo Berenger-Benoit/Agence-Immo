@@ -25,7 +25,7 @@ class AdminPropertyController extends AbstractController
     }
 
     /**
-     * @Route("/edit/{id}", name="admin_edit", requirements={"id": "\d+"}, methods={"GET", "POST"})
+     * @Route("/admin/edit/{id}", name="admin_edit", requirements={"id": "\d+"}, methods={"GET", "POST"})
      */
     public function edit(Property $property, Request $request, EntityManagerInterface $em)
     {
@@ -50,7 +50,7 @@ class AdminPropertyController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="admin_new")
+     * @Route("/admin/new", name="admin_new")
      */
     public function new(Request $request)
     {
@@ -79,15 +79,20 @@ class AdminPropertyController extends AbstractController
     }
 
     /**
-     * @Route("/delete/{id}", name="admin_delete", requirements={"id": "\d+"}, methods={"DELETE"})
+     * @Route("/admin/delete/{id}", name="admin_delete", requirements={"id": "\d+"}, methods={"DELETE"})
      */
-    public function delete(Property $property)
+    public function delete(Property $property, Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($property);
-        $em->flush();
 
-        $this->addFlash('danger', 'Le bien a été supprimé');
+        if($this->isCsrfTokenValid('delete'. $property->getId(), $request->get('_token'))){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($property);
+            $em->flush();
+            $this->addFlash('danger', 'Le bien a été supprimé');
+        }
+      
+
+    
 
         return $this->redirectToRoute('admin_list');
     }

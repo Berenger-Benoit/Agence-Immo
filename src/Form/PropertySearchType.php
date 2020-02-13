@@ -17,13 +17,13 @@ class PropertySearchType extends AbstractType
                 'required' =>false,
                 'label' => false,
                 'attr' =>
-                ['placeholder' => 'Surface minimale']
+                ['placeholder' => 'Surface min en m²']
             ])
             ->add('maxPrice', IntegerType::class, [
                 'required' =>false,
                 'label' => false,
                 'attr' =>
-                ['placeholder' => 'Budget max']
+                ['placeholder' => 'Budget max €']
             ])
         ;
     }
