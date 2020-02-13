@@ -102,15 +102,21 @@ class Property
     private $updated_at;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Option", mappedBy="properties")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="properties")
      */
-    private $options;
+    private $tags;
 
     public function __construct()
     {
         $this->created_at = new \DateTime();
         $this->sold = false;
         $this->options = new ArrayCollection();
+        $this->tags = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+       return $this->title;
     }
 
     public function getId(): ?int
@@ -296,29 +302,30 @@ class Property
         return $this;
     }
 
+
     /**
-     * @return Collection|Option[]
+     * @return Collection|Tag[]
      */
-    public function getOptions(): Collection
+    public function getTags(): Collection
     {
-        return $this->options;
+        return $this->tags;
     }
 
-    public function addOption(Option $option): self
+    public function addTag(Tag $tag): self
     {
-        if (!$this->options->contains($option)) {
-            $this->options[] = $option;
-            $option->addProperty($this);
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+            $tag->addProperty($this);
         }
 
         return $this;
     }
 
-    public function removeOption(Option $option): self
+    public function removeTag(Tag $tag): self
     {
-        if ($this->options->contains($option)) {
-            $this->options->removeElement($option);
-            $option->removeProperty($this);
+        if ($this->tags->contains($tag)) {
+            $this->tags->removeElement($tag);
+            $tag->removeProperty($this);
         }
 
         return $this;

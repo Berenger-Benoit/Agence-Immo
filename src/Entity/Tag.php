@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\OptionRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
  */
-class Option
+class Tag
 {
     /**
      * @ORM\Id()
@@ -24,7 +24,7 @@ class Option
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Property", inversedBy="options")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Property", mappedBy="tags")
      */
     private $properties;
 
@@ -33,6 +33,10 @@ class Option
         $this->properties = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
     public function getId(): ?int
     {
         return $this->id;

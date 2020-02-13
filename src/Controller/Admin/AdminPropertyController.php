@@ -69,7 +69,6 @@ class AdminPropertyController extends AbstractController
 
             $this->addFlash('success', 'Le bien a été ajouté!');
 
-
             return $this->redirectToRoute('admin_list');
         }
 

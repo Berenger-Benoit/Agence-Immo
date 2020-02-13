@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Property;
+use App\Entity\TagType;
 use App\Entity\PropertySearch;
 use App\Form\PropertySearchType;
 use App\Repository\PropertyRepository;

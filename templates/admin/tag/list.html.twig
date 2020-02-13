@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block title  %}Gérer les Options{% endblock %}
+{% block body %}
+<div class="gestion">
+    <div class="container mt-4">
+
+        <h1 class="text-center">Gestion des Options</h1>
+        <div class="d-flex justify-content-center mb-1">
+            <a href="{{path('admin_tag_new')}}" class="btn btn-primary">Créer une nouvelle option</a>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th class="d-flex justify-content-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tag in tags %}
+                        <tr>
+                            <td> {{ tag.name }}</td>
+                            <td class="d-flex justify-content-end"> 
+                                <a href="{{ path('admin_tag_edit', {'id': tag.id}) }}" class="btn btn-warning d-flex mr-2">Editer<i class="fa fa-pencil ml-2 mt-1" aria-hidden="true"></i></a>    
+                                <form action="{{ path('admin_tag_delete', {'id': tag.id}) }}" method="POST">
+                                    <input type="hidden" name="_method" value="DELETE" >
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ tag.id)}}">
+                                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

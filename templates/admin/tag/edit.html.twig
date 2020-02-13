@@ -1,12 +1,12 @@
 {% extends "base.html.twig" %}
-{% block title property.title %}
+{% block title tag.name %}
 
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block body %}
 <div class="admin">
     <div class="container mt-5">
-        <h1>Éditer le bien :</h1>
-            {{ include ("admin/form.html.twig", {form: form, button: 'Éditer'}) }}
+        <h1>Éditer l'option' :</h1>
+            {{ include ("admin/tag/form.html.twig", {form: form, button: 'Éditer'}) }}
     </div>
 </div>
 {% endblock %} 

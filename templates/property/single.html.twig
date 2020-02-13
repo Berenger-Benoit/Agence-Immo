@@ -71,11 +71,25 @@
                     <td>{{ property.heatType }}</td>
                 </tr>
             </table>
-            <a href="{{path('home')}}" class="btn btn-primary  mt-4">Retour page d'accueil</a>
+            <a href="{{path('property_list')}}" class="btn btn-primary mb-2 mt-4">Retour liste des biens</a>
 
         </div>
         <div class="col-md-4">
             <h2>Spécificités</h2>
+            {% for tag in property.tags %}
+            {% if tag is defined  %}
+            <table class="table table-striped">
+                <tr>
+                    <td>{{tag.name}}</td>
+                </tr>
+            </table>
+            {% endif %}
+            {% else %}
+                <div>
+                    Aucune Spécificités pour ce bien
+                </div>
+            {% endfor %}
+           
         </div>
     </div>
 </div>

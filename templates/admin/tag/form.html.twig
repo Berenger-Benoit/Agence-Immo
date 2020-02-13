@@ -1,0 +1,12 @@
+{{form_start (form)}}
+<div class="container">
+
+    <div class="row">
+        <div class="col-4">
+            
+            {{form_rest(form)}}
+            <button class="btn btn-primary mt-4">{{ button|default('Enregistrer') }}</button>
+            {{form_end (form)}}
+            <a href="{{path('admin_tag_list')}}" class="btn btn-primary mt-4">Retour aux options</a>
+        </div>
+    </div>
