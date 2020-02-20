@@ -42,3 +42,9 @@ DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/agence_immo?serverVersio
 - Run the Symfony 
 
     - symfony serve -d
+
+
+
+If you want access to admin 
+
+Paste in your user table this roles ["ROLE_ADMIN"]
