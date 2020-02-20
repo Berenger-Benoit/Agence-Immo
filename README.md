@@ -12,6 +12,8 @@ Techno utilisées
 
 ## Installation
 
+Clone this repository
+
 - Install dependencies :
 
     - composer install
