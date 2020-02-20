@@ -12,6 +12,14 @@ Techno utilisées
 
 ## Installation
 
+Bundle utilisé 
+
+**KnpPaginatorBundle**
+
+**VichUploaderBundle**
+
+**LiipImagineBundle**
+
 Clone this repository
 
 - Install dependencies :
