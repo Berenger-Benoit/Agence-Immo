@@ -1,41 +1,42 @@
 # Agence-Immo
 
-Technologies utilisées
+Techno utilisées
 
-Symfony V 5.0
+**Symfony V 5.0**
 
-Twig
+**Twig**
 
-Php V 7.2.11
+**Php V 7.2.11**
 
-Bootsrap V 4.4.1
+**Bootsrap V 4.4.1**
 
-Installation
+## Installation
 
-Install dependencies :
+- Install dependencies :
 
-composer install
+    - composer install
 
-Create .env.local :
+- Create .env.local :
 
-touch .env.local
+    - touch .env.local
 
-Paste DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/ofoot?serverVersion=5.7
+- Paste 
+DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/agence_immo?serverVersion=5.7
 
-Replace db_user & db_password with your SQL credentials
+    - Replace db_user & db_password with your SQL credentials
 
-Create the database :
+- Create the database :
 
-symfony console doctrine:database:create OR symfony console d:d:c
+    - symfony console doctrine:database:create OR symfony console d:d:c
 
-Import the DB structure :
+- Import the DB structure :
 
-symfony console doctrine:migrations:migrate OR symfony console d:m:m
+    - symfony console doctrine:migrations:migrate OR symfony console d:m:m
 
-Type y to confirm modifications
+    - Type y to confirm modifications
 
-Usage :
+### Usage :
 
-Run the Symfony 
+- Run the Symfony 
 
-symfony serve -d
+    - symfony serve -d

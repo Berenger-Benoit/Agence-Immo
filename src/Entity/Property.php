@@ -28,17 +28,15 @@ class Property
 
     /**
      * @ORM\Column(type="string", length=255)
-     * 
+     *
      * @var string|null
      */
     private $fileName;
 
     /**
      * @var File||null
-     * @Asset\Image(mimeTypes="images/jpeg")
+     * @Assert\Image(mimeTypes="images/jpeg")
      * @Vich\UploadableField(mapping="property_image", fileNameProperty="fileName")
-     * 
-     * 
      */
     private $imageFile;
 
@@ -349,22 +347,22 @@ class Property
     }
 
     /**
-     * Get the value of fileName
+     * Get the value of fileName.
      *
-     * @return  string|null
-     */ 
+     * @return string|null
+     */
     public function getFileName()
     {
         return $this->fileName;
     }
 
     /**
-     * Set the value of fileName
+     * Set the value of fileName.
      *
-     * @param  string|null  $fileName
+     * @param string|null $fileName
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setFileName($fileName)
     {
         $this->fileName = $fileName;
@@ -373,28 +371,29 @@ class Property
     }
 
     /**
-     * Get the value of imageFile
+     * Get the value of imageFile.
      *
-     * @return  File||null
-     */ 
+     * @return File||null
+     */
     public function getImageFile()
     {
         return $this->imageFile;
     }
 
     /**
-     * Set the value of imageFile
+     * Set the value of imageFile.
      *
-     * @param  File||null  $imageFile
+     * @param File||null $imageFile
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setImageFile($imageFile)
     {
         $this->imageFile = $imageFile;
         if ($this->imageFile instanceof UploadedFile) {
             $this->updated_at = new \DateTime();
         }
+
         return $this;
     }
 }
