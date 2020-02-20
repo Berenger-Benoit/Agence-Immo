@@ -6,9 +6,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PropertyRepository")
+ * @Vich\Uploadable
  */
 class Property
 {
@@ -23,6 +25,22 @@ class Property
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * 
+     * @var string|null
+     */
+    private $fileName;
+
+    /**
+     * @var File||null
+     * @Asset\Image(mimeTypes="images/jpeg")
+     * @Vich\UploadableField(mapping="property_image", fileNameProperty="fileName")
+     * 
+     * 
+     */
+    private $imageFile;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -116,7 +134,7 @@ class Property
 
     public function __toString()
     {
-       return $this->title;
+        return $this->title;
     }
 
     public function getId(): ?int
@@ -302,7 +320,6 @@ class Property
         return $this;
     }
 
-
     /**
      * @return Collection|Tag[]
      */
@@ -328,6 +345,56 @@ class Property
             $tag->removeProperty($this);
         }
 
+        return $this;
+    }
+
+    /**
+     * Get the value of fileName
+     *
+     * @return  string|null
+     */ 
+    public function getFileName()
+    {
+        return $this->fileName;
+    }
+
+    /**
+     * Set the value of fileName
+     *
+     * @param  string|null  $fileName
+     *
+     * @return  self
+     */ 
+    public function setFileName($fileName)
+    {
+        $this->fileName = $fileName;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of imageFile
+     *
+     * @return  File||null
+     */ 
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * Set the value of imageFile
+     *
+     * @param  File||null  $imageFile
+     *
+     * @return  self
+     */ 
+    public function setImageFile($imageFile)
+    {
+        $this->imageFile = $imageFile;
+        if ($this->imageFile instanceof UploadedFile) {
+            $this->updated_at = new \DateTime();
+        }
         return $this;
     }
 }
